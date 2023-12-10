@@ -1,0 +1,58 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}Created Form{% endblock title %}
+{% block content %}
+<div class="d-block text-bg-secondary text-end container ">
+    <form action="" method="post" class="m-1 p-3" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="input-form a-title">
+            <label for="{{ form.title.id_for_label}}" class="form-label">{{ form.title.label}}</label>
+            {{ form.title }}
+            {% for error in form.title.errors %}
+                <smal class="text-warning fs-6">{{ error }}</smal>
+            {% endfor %}
+        </div>
+        <div class="input-form a-text">
+            <label for="{{ form.text.id_for_label}}" class="form-label">{{ form.title.label}}</label>
+            {{ form.text }}
+            {% for error in form.text.errors %}
+                <smal class="text-warning fs-6">{{ error }}</smal>
+            {% endfor %}
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                {% comment %} <div class="input-form a-date">
+                    <label for="id_created_date" class="form-label">تاریخ</label>
+                    {{ form.created_date }}
+                    {% for error in form.created_date.errors %}
+                        <smal class="text-warning fs-6">{{ error }}</smal>
+                    {% endfor %}
+                </div> {% endcomment %}
+                <div class="input-form a-checkbox">
+                    <label for="id_is_show" class="form-label">نمایش داده شود؟</label>
+                    {{ form.is_show }}
+                    {% for error in form.is_show.errors %}
+                        <smal class="text-warning fs-6">{{ error }}</smal>
+                    {% endfor %}
+                </div>
+            
+                <div class="input-form a-imag col">
+                    <label for="id_image" class="form-label"><a href="{{edit.image.url}}">عکس مقاله</a></label>
+                    {{ form.image }}
+                    {% for error in form.image.errors %}
+                        <smal class="text-warning fs-6">{{ error }}</smal>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col justify-content-center d-flex" >
+                <img class="w-50" alt="{{ edit.image }}" src="{{ edit.image.url }}">
+                {% for error in form.author.errors %}
+                    <smal class="text-warning fs-6">{{ error }}</smal>
+                {% endfor %}
+            </div>
+        </div>
+        {% comment %} {{form.errors}} {% endcomment %}
+        <input type="submit" value="Update" class="btn bg-transparent border-primary border-3 hover d-block m-auto w-25">
+    </form>
+</div>
+{% endblock content %}

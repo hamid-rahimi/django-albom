@@ -1,0 +1,76 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}Register{% endblock title %}
+{% block content %}
+    <div width="100%" class="bg-dark p-5">
+        <div class="container text-bg-secondary mt-5">
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="row mb-4">
+                    <div class="col">
+                    <div data-mdb-input-init class="form-outline">
+                        <label class="form-label" for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                        {{ form.first_name }}
+                        {% for error in form.first_name.errors %}
+                            <span class="text-warning">{{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    </div>
+                    <div class="col">
+                    <div  class="form-outline">
+                        <label class="form-label" for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                        {{ form.last_name }}
+                        {% for error in form.last_name.errors %}
+                            <span class="text-warning">{{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                        <label class="form-label" for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                        {{ form.email }}
+                        {% for error in form.email.errors %}
+                            <span class="text-warning">{{ error}}</span>
+                        {% endfor %}
+                </div>
+
+                <!-- username input -->
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="{{ form.username.id_for_lable }}">{{ form.username.label }}</label>
+                    {{ form.username }}
+                    {% for error in form.username.errors %}
+                      <span class="text-warning">{{ error}}</span>
+                    {% endfor %}
+                  </div>
+
+                <!-- Password input -->
+                <div class="row mb-4">
+                    <div class="col">
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                        {{ form.password }}
+                        {% for error in form.password.errors %}
+                            <span class="text-warning">{{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    </div>
+                    <div class="col">
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="{{ form.password_2.id_for_label }}">{{ form.password_2.label }}</label>
+                        {{ form.password_2 }}
+                        {% for error in form.password_2.errors %}
+                            <span class="text-warning">{{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    </div>
+                </div>
+                {{ form.errors }}
+                <!-- Submit button -->
+                <button data-mdb-ripple-init type="Submit" class="btn btn-primary btn-block mr-auto mb-4 w-50">Sign up</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "base/base.html" %}
+{% block title %}{{article.title | capfirst}}{% endblock title %}
+{% block main_header %}
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">مثال الألبوم</h1>
+        <p class="lead text-body-secondary">وصف قصير حول الألبوم أدناه (محتوياته ، ومنشؤه ، وما إلى ذلك). اجعله قصير ولطيف، ولكن ليست قصير جدًا حتى لا يتخطى الناس هذا الألبوم تمامًا.</p>
+        <p>
+          <a href="{% url "blog:delete_page" article.id %}" class="btn btn-danger w-25 my-2">حذف</a>
+          <a href="{% url "blog:update_page" article.id %}" class="btn btn-warning w-25 my-2">ویرایش</a>
+        </p>
+      </div>
+    </div>
+  </section>
+{% endblock main_header %}
+{% block content %}
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row">
+          <div class="card shadow-sm align-items-center">
+            <img class="bd-placeholder-img text-center d-block object-fit-contain " width="50%" height="225" src="{{ article.image.url }}" ><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{article.title | capfirst}}</text>
+            </img>
+            <div class="card-body">
+              <p class="card-text">این یک کارت گسترده تر با متن پشتیبانی در زیر به عنوان یک مقدمه طبیعی برای محتوای اضافی است. این محتوا کمی طولانی تر است.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  {% comment %} <a href="{% url "blog:article_edit" article_pk %}"> {% endcomment %}
+                  <a href="{% url "blog:update_page" article.id %}">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">ویرایش</button>
+                  </a>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">تعديل</button>
+                </div>
+                <small class="text-body-secondary">9 دقائق</small>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

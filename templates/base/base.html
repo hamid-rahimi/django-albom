@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="fa-ir" dir="rtl" data-bs-theme="auto">
+    <head>
+        <meta charset="utf-8">
+        {% include "base/head.html" %}
+        {% include "base/head_ref.html" %}
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album-rtl/">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+        <title>{% block title %}{% endblock title %}</title>
+    </head>
+
+    <body>
+        {% include "base/dark_light.html" %}
+        {% include "base/page_header.html" %}
+        <main>
+            {% block main_header %}{% endblock main_header %}
+            {% block content %}{% endblock content %}
+        </main>
+        {% include "base/page_footer.html" %}
+        {% include "base/footer_ref.html" %}
+    </body>
+</html>

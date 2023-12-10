@@ -1,0 +1,14 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}Add Person{% endblock title %}
+{% block content %}
+    <div width="100%" class="bg-dark p-5">
+        <div class="container text-bg-secondary mt-5">
+            <form action="{% url "blog:add_person" %}" method="post" class="m-1 p-3">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="submit" class="btn bg-transparent border-primary border-3 hover d-block m-auto w-25 mt-5">
+            </form>
+        </div>
+    </div>
+{% endblock content %}

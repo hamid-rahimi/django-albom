@@ -1,0 +1,70 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}Home page{% endblock title %}
+{% block main_header %}
+    {% include "base/main_header.html" %}
+{% endblock main_header %}
+{% block content %}
+    {% comment %} <div>{{s_key}}</div> {% endcomment %}
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-5">
+                {% for article in articles %}
+                    <div class="card shadow-sm">
+                        <a href="{% url "blog:detail_page" article.id %}">
+                            <img class="bd-placeholder-img card-img-top" alt="" width="100%" height="225" src="{{ article.image.url }}">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c"/>
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{ article.title | capfirst }}</text>
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text">این یک کارت گسترده تر با متن پشتیبانی در زیر به عنوان یک مقدمه طبیعی
+                                برای محتوای اضافی است. این محتوا کمی طولانی تر است.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="{% url "blog:update_page" article.id %}">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">ویرایش</button></a>
+                                    <a href="{% url "blog:blog_page" %}">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">حذف</button></a>
+                                </div>
+                                
+                                    <small class="text-body-secondary">{{ article.author.get_full_name }}</small>
+                                
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}empty
+                {% endfor %}
+            </div>
+            <nav aria-label="Page navigation example" class="mt-5" style="direction:ltr">
+                <ul class="pagination justify-content-center">
+                    {% if articles.has_previous %}
+                        <li class="page-item">
+                        <a class="page-link" href="?page=1">&laquo; first</a></li><li class="page-item">
+                        <a class="page-link" href="?page={{ articles.previous_page_number }}"tabindex="-1">Previous</a>
+                    {% comment %} {% else %}
+                        <li class="page-item disabled">
+                        <a class="page-link disabled" href="?page={{ articles.previous_page_number }}" {% endcomment %}
+                    {% endif %}
+                     
+                    </li>
+                    {% for p in articles.paginator.page_range %}
+                        <li class="page-item {% if p == articles.number %} active {% endif %}">
+                            <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                    {% if articles.has_next %}
+                        <li class="page-item">
+                        <a class="page-link" href="?page={{ articles.next_page_number }}">Next</a></li><li class="page-item">
+                        <a class="page-link" href="?page={{ articles.paginator.num_pages }}">last &raquo;</a>
+                    {% comment %} {% else %}
+                        <li class="page-item disabled">
+                        <a class="page-link disabled" href="?page={{ articles.next_page_number }}">Next</a> {% endcomment %}
+                    {% endif %}
+                    
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endblock content %}
